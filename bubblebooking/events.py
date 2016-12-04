@@ -3,8 +3,9 @@
 class Events(self. eventId):
 
     self.eventId = eventId
-
-
+    self.date
+    self.time
+    self.organizer
 
     #create and cancel events
     def createEvent(self):
