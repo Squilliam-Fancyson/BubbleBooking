@@ -1,0 +1,21 @@
+sudo: false
+language: python
+
+python:
+    - "3.3"
+    - "3.4"
+    - "3.5"
+
+install:
+    - pip install --user -r requirements.txt
+
+script: make test
+
+notifications:
+  recepients:
+    slack: squilliam:FXR0x24CiWmy3LDaEt9JV3ev
+      branches:
+        only:
+          - master
+          - develop
+	
