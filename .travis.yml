@@ -18,4 +18,5 @@ notifications:
         only:
           - master
           - develop
-	
+    email: dlt0012@auburn.edu
+
