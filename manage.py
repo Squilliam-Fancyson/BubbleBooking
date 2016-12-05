@@ -7,6 +7,8 @@ from flask_script.commands import ShowUrls, Clean
 from bubblebooking import create_app
 from bubblebooking.models import db, User
 
+from bubblebooking.views import *
+
 # default to dev config because no one should use this in
 # production anyway
 env = os.environ.get('BUBBLEBOOKING_ENV', 'dev')
@@ -34,6 +36,11 @@ def createdb():
     """
 
     db.create_all()
+
+@app.route('/createEvent')
+def listEvent():
+    events = [Events(eventId = 1, eventName = "Event 1"), Events(eventId = 2, eventName = "Event 2")]
+    return render_template('createEvent.html', events=events)
 
 if __name__ == "__main__":
     manager.run()

@@ -45,3 +45,5 @@ class Faculty(Account):
         perOverrideStudent = True
         perDeleteOtherEvent = True
 
+    def overrideEvent(self, eventId):
+        #todo
