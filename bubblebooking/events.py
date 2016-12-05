@@ -1,11 +1,12 @@
 
 
-class Events(self. eventId):
+class Events(object):
 
-    self.eventId = eventId
-    self.date
-    self.time
-    self.organizer
+    def __init__(self, eventId):
+        self.eventId = eventId
+        self.date
+        self.time
+        self.organizer
 
     #create and cancel events
     def createEvent(self):

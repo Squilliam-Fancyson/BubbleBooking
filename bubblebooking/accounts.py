@@ -1,34 +1,32 @@
 
 
-class Account(self, acct_name, acct_num, password):
+class Account(object):
 
-    #account name, account number, password
-    self.acctName = acct_name
-    self.acctNum = acct_id
-    self.password = password
+    def __init(self, acct_name, acct_id, acct_password):
+        #account name, account number, password
+        self.acctName = acct_name
+        self.acctNum = acct_id
+        self.password = acct_password
 
-    #regular account default permissions
-    #CONVERT PERMISSIONS TO STRUCT!!
-    perCreateEvent = True
-    perDeleteOwnEvent = True
+        #regular account default permissions
+        #CONVERT PERMISSIONS TO STRUCT!!
+        perCreateEvent = True
+        perDeleteOwnEvent = True
+        perDeleteOtherEvent = False
+        perBanUser = False
+        perUnbanUser = False
+        perOverrideFaculty = False
+        perOverrideStudent = False
 
-    perDeleteOtherEvent = False
+class Admin(Account):
+    def __init(self):
+        #account name, account number, password
 
-    perBanUser = False
-    perUnbanUser = False
-
-    perOverrideFaculty = False
-    perOverrideStudent = False
-
-class Admin():
-
-    perDeleteOtherEvent = True
-
-    perBanUser = True
-    perUnbanUser = True
-
-    perOverrideFaculty = True
-    perOverrideStudent = True
+        perDeleteOtherEvent = True
+        perBanUser = True
+        perUnbanUser = True
+        perOverrideFaculty = True
+        perOverrideStudent = True
 
     #ban and unban users
     def banUser(self, acct_id):
@@ -40,9 +38,10 @@ class Admin():
     def modifyPermissions(self, acct_id):
         #todo
 
-class Faculty():
+class Faculty(Account):
 
-    #need to double check permissions
-    perOverrideStudent = True
-    perDeleteOtherEvent = True
+    def __init(self):
+        #need to double check permissions
+        perOverrideStudent = True
+        perDeleteOtherEvent = True
 
