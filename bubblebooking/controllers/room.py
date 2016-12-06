@@ -1,21 +1,17 @@
 """Defines the controller for the Room model."""
 
-from flask_wtforms import WTForms
 
+from bubblebooking.models import db
 from bubblebooking.models.locations.room import Room
-from bubblebooking.models.accounts import Account
-from bubblebooking.models.scheduling import Event
+from bubblebooking.models.scheduling.event import Event
+from bubblebooking.forms import BestFitCriteriaForm
 
 
 class RoomController(object):
     """Controls room booking for scheduling events.
 
     Attributes:
-        state (str): Indicates the availability between a Room and Event instance.
-
-        user (Account): Indicates the booker of a room between an Account and Event.
-
-        best_fit_criteria (collections.namedtuple): The criteria required to search for
+        best_fit_criteria (WTForms.Form): The criteria required to search for
         the best-fitting room for an event.
 
     Methods:
@@ -29,36 +25,54 @@ class RoomController(object):
 
     """
 
-    self.state = str()
-    self.user = Account()
-    self.bestfit_criteria = WTForms()
+    bestfit_criteria = BestFitCriteriaForm()
 
-    def __init__(self, state=None, invitee=None, bestfit_criteria=None):
-        self.state = state
-        self.user = invitee
+    def __init__(self):
         self.bestfit_criteria = bestfit_criteria
 
-    def get_best_fit(self) -> list:
+    def get_best_fit(self):
         """Get available rooms for given event parameters."""
         rooms = []
         # TODO: Implement best fit algorithm.
+        rooms.append(Room("Test Room", "Test", ["Test1", "Test2"], "Test Descr."))
         return rooms
 
-    def book_event(self, event: Event):
+    def book_event(self, user, event):
         """Book a specified event with a room.
 
         Args:
+            user (Account):
+
             event (Event): Event to book a room for.
 
         """
-        # TODO: Add event to database.
+        # if USER has BOOKING_PERMISSION
+        #### create EVENT
+        #### set EVENT.ORGANIZER to USER
+        db.session.add(event)
 
 
-    def cancel_booking(self, event: Event):
+    def cancel_booking(self, event):
         """Unbook an event from its room.
 
         Args:
-           event (Event): Event to unbook a room from."""
+           event (Event): Event to unbook a room from.
 
         """
-        # TODO: Remove event from database.
+        # if USER is EVENT.ORGANIZER
+        db.session.expunge(event)
+
+    def create_event(self, name, room, organizer):
+        """Create an event.
+
+        Args:
+            name (str): Name of the event.
+
+            room (Room): Room of the event.
+
+            organizer (Account): Organizer of the event.
+
+        """
+        event = Event(name, room, organizer)
+        db.session.add(event)
+        return event

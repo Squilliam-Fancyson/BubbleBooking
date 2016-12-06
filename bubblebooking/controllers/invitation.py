@@ -62,4 +62,5 @@ class InvitationController(object):
 
         """
         inv = Invitation(user, event)
+        db.session.add(inv)
         self.accept_invite(inv)
