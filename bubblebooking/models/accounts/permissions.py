@@ -4,6 +4,8 @@ from bubblebooking.models import db
 
 
 class Permissions(db.Model):
+   """Default Permissions"""
+
     self.permissions = db.Column(db.PickleType({
             "is_banned": False,
             "create_event": False,
@@ -16,6 +18,8 @@ class Permissions(db.Model):
         }))
 
     def __init__(self, acc_type):
+
+        """Update Permissions for Each Account Type"""
         if acc_type == "regular":
             self.permissions.update(
                 create_event=True,
@@ -38,8 +42,11 @@ class Permissions(db.Model):
                 override_student=True
             )
 
+
     def modify_permission(self, prm_key: str, value: bool):
+         """Modify Permission for Specified Account Name, Permission Type, and Permission Value"""
         self.permissions[prm_key] = value
 
     def has_permission(self, prm_key) -> bool:
+        """Determines if an Account has the required permissions"""
         return self.permissions[prm_key]

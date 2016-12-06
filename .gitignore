@@ -40,3 +40,6 @@ venv*
 
 .webassets-cache
 *.sublime-*
+
+# PyCharm
+.idea
