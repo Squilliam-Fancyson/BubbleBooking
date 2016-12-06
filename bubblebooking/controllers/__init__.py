@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Controllers for the various data models in the bubblebooking project.
 
 Classes:
