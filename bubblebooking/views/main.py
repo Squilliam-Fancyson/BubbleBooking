@@ -3,13 +3,14 @@ from flask.ext.login import login_user, logout_user, login_required
 
 from bubblebooking.extensions import cache
 from bubblebooking.forms import LoginForm
-from bubblebooking.models import User
+from bubblebooking.models.accounts import Account
 
 main = Blueprint('main', __name__)
 
 
 @main.route('/')
 @cache.cached(timeout=1000)
+@login_required
 def home():
     return render_template('index.html')
 
@@ -19,7 +20,7 @@ def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).one()
+        user = Account.query.filter_by(username=form.username.data).one()
         login_user(user)
 
         flash("Logged in successfully.", "success")

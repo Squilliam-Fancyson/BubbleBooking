@@ -2,12 +2,10 @@
 
 import os
 
-from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_script import Manager, Server
 from flask_script.commands import ShowUrls, Clean
 from bubblebooking import create_app
 from bubblebooking.models import db, User
-
 
 # default to dev config because no one should use this in
 # production anyway
@@ -22,30 +20,15 @@ manager.add_command("clean", Clean())
 
 @manager.shell
 def make_shell_context():
-    """ Creates a python REPL with several default imports
-        in the context of the app
-    """
+    """Create a python REPL with several default imports in the context of the app."""
 
     return dict(app=app, db=db, User=User)
 
-
 @manager.command
 def createdb():
-    """ Creates a database with all of the tables defined in
-        your SQLAlchemy models
-    """
+    """Create a database with all tables of SQLAlchemy models."""
     db.create_all()
 
-
-class Events():
-    def __init__(self, eventId, eventName):
-        self.eventId = eventId
-        self.eventName = eventName
-
-@app.route('/createEvent')
-def listEvent():
-    events = [Events(eventId = 1, eventName = "Event 1"), Events(eventId = 2, eventName = "Event 2")]
-    return render_template('createEvent.html', events=events)
 
 if __name__ == "__main__":
     manager.run()
