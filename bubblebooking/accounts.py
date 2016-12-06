@@ -2,30 +2,41 @@
 
 class Account(object):
 
-    def __init(self, acct_name, acct_id, acct_password):
+    def __init__(self, credential, accountType, userName):
         #account name, account number, password
-        self.acctName = acct_name
-        self.acctNum = acct_id
-        self.password = acct_password
+        self.credential = credential
+        self.accountType = accountType
+        self.userName = userName
+
+    def modifyPermission(self):
+        #todo
+
+    def isOrganizer(self):
+        #todo
+
+    # ban and unban users
+    def banUser(userName):
+        if self.permissions.hasPermissions(userName) == True:
+                userName.permissions.permissions.isBanned = True
+
+    def unbanUser(userName):
+        if self.permissions.hasPermissions(userName) == True:
+            userName.permissions.permissions.isBanned = False
+
+
+class Regular(Account):
+    def __init__(self, acct_id):
         self.permissions = Permissions("regular")
 
+
 class Admin(Account):
-    def __init(self):
+    def __init__(self):
         self.permissions = Permissions("admin")
 
-    #ban and unban users
-    def banUser(self, acct_id):
-        self.permissions.permissions.isBanned = True
-
-    def unbanUser(self, acct_id):
-        self.permissions.permissions.isBanned = False
-
-    def modifyPermissions(self, accountId, permissionKey, permissionValue):
-        accountId.permissionKey = permissionValue
 
 class Faculty(Account):
 
-    def __init(self):
+    def __init__(self):
         self.permissions = Permissions("faculty")
 
     def overrideEvent(self, eventId):
@@ -44,5 +55,9 @@ class Permissions(self, accountType):
         permissions = {'isBanned': False, 'createEvent': True, 'deleteOwnEvent': True, 'deleteOtherEvent': False, ' banUser': False,
                         'unbanUser': False, 'overrideFaculty': False, 'overrideStudent': False}
 
-    modifyPermissions(permissionKey, value):
-        permissionKey = value
+    modifyPermissions(userName, permissionKey, value):
+        #todo
+
+    hasPermissions(userName)
+        #todo
+

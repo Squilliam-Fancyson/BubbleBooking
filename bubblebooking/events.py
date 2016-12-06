@@ -2,28 +2,46 @@
 
 class Events(object):
 
-    def __init__(self, eventId, eventName, buildingId, roomNum):
-        self.eventId = eventId
+    def __init__(self, eventName, eventRoom, organizer, attendees, date):
+
         self.eventName = eventName
-        self.eventBuilding = buildingId
-        self.roomNum = roomNum
-        self.date
-        self.time
-        self.organizer
-        self.attendees #array
-        self.maxOccupancy
+        self.eventRoom = eventRoom
+        self.eventOrganizer = organizer
+        self.eventAttendees = attendees
+        self.eventDate = date
 
-    #create and cancel events
-    def createEvent(self, eventId):
-        #CHECK AVAILABILITY AND THEN BOOK ROOM
+    def destroy(eventId):
+        if self.organizer.hasPermissions(self.eventOrganizer.userName) == True:
+            #deleteEvent
 
-    def viewEvent(selfs):
-        #CHECK IF EVENT EXISTS THEN DISPLAY
+    def addUsertoAttendingList(userId):
+        #TODO
 
-    def cancelEvent(self, event_id):
-        #CHECK PERMISSIONS, CHECK IF EVENT EXISTS, DELETE EVENT
+class Day(timeSlots):
+    self.dayTimeSlots = timeSlots
 
-    def RSVP(self, event_id, acct_id):
-        #CHECK IF EVENT EXISTS, CHECK OCCUPANCY, RSVP
+    def isAvailable(time):
+        #todo
+
+    def reserve(time):
+        if self.organizer.hasPermissions(self.eventOrganizer.userName) == True:
+            #reserveEvent
+
+class Invitation(object, state, invitee):
+
+        def __init__(self):
+            self.inviteState = state
+            self.invitee = invitee
+
+        def acceptInvite(invitee):
+            removePendingStatus()
+            AddUserToAttendingList(invitee)
+
+
+        def declineInvite():
+            #todo
+
+        def removePendingStatus():
+            #todo
 
 
