@@ -10,9 +10,11 @@ class Accounts(object):
 
     def modifyPermission(self):
         #todo
+        pass
 
     def isOrganizer(self):
         #todo
+        pass
 
     # ban and unban users
     def banUser(self, userName):
@@ -41,6 +43,7 @@ class Faculty(Accounts):
 
     def overrideEvent(self, eventId):
         #todo
+        pass
 
 class Permissions(Accounts):
 
@@ -63,4 +66,5 @@ class Permissions(Accounts):
 
     def hasPermissions(self, userName):
         #todo
+        pass
 
