@@ -5,6 +5,14 @@
 A class project for COMP 3500 (Software Modeling and Design) at Auburn
 University.
 
+Team Members:
+
+* Benjamin Kidd (Programming/Design)
+* Rain Li (Design/Architecture)
+* David Moore (Leader/Requirements Analysis)
+* Jake Mullins (Design/Architecture)
+* Daniel Thompson (Quality/Programming)
+
 ---
 
 ## Overview
