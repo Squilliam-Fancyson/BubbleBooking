@@ -2,7 +2,10 @@
 
 import pytest
 
-from bubblebooking.models import db, User
+from bubblebooking.models import db
+from bubblebooking.models.accounts import Account
+from bubblebooking.models.accounts.admin import AdminAccount
+
 
 create_user = False
 
@@ -12,17 +15,17 @@ class TestModels:
     def test_user_save(self, testapp):
         """ Test Saving the user model to the database """
 
-        admin = User('admin', 'supersafepassword')
+        admin = AdminAccount("admin", "supersafepassword")
         db.session.add(admin)
         db.session.commit()
 
-        user = User.query.filter_by(username="admin").first()
+        user = Account.query.filter_by(username="admin").first()
         assert user is not None
 
     def test_user_password(self, testapp):
         """ Test password hashing and checking """
 
-        admin = User('admin', 'supersafepassword')
+        admin = AdminAccount("admin", "supersafepassword")
 
         assert admin.username == 'admin'
         assert admin.check_password('supersafepassword')

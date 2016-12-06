@@ -1,30 +1,34 @@
 from flask_wtf import Form
-from wtforms import StringField, PasswordField
+from wtforms import PasswordField
+from wtforms import StringField
 from wtforms import validators
 
-from bubblebooking.models import User
+from bubblebooking.models import Account
 
 
 class LoginForm(Form):
-    username = StringField(u'Username', validators=[validators.required()])
-    password = PasswordField(u'Password', validators=[validators.optional()])
+    username = StringField("Username", validators=[validators.required()])
+    credential = PasswordField("Password", validators=[validators.optional()])
 
     def validate(self):
-        check_validate = super(LoginForm, self).validate()
+        check_validate = super().validate()
 
-        # if our validators do not pass
+        # Basic form validation.
         if not check_validate:
             return False
 
-        # Does our the exist
-        user = User.query.filter_by(username=self.username.data).first()
+        # Existence of user account.
+        user = Account.query.filter_by(username=self.username.data).first()
         if not user:
             self.username.errors.append('Invalid username or password')
             return False
 
-        # Do the passwords match
+        # Correct account credentials.
         if not user.check_password(self.password.data):
-            self.username.errors.append('Invalid username or password')
+            self.credential.errors.append('Invalid username or password')
             return False
 
         return True
+
+class BestFitCriteriaForm(self):
+    pass
