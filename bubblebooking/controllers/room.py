@@ -51,7 +51,6 @@ class RoomController(object):
         #### set EVENT.ORGANIZER to USER
         db.session.add(event)
 
-
     def cancel_booking(self, event):
         """Unbook an event from its room.
 
@@ -59,7 +58,7 @@ class RoomController(object):
            event (Event): Event to unbook a room from.
 
         """
-        # if USER is EVENT.ORGANIZER
+        # if USER is EVENT.ORGANIZER or USER.hasPermission(cancelOther)
         db.session.expunge(event)
 
     def create_event(self, name, room, organizer):
@@ -73,6 +72,8 @@ class RoomController(object):
             organizer (Account): Organizer of the event.
 
         """
+        # if (ROOM.day.timeslot[slot] == "available")
+        #### and (USER.hasPermission(createEvent))
         event = Event(name, room, organizer)
         db.session.add(event)
         return event
