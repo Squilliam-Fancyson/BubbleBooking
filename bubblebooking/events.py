@@ -2,23 +2,28 @@
 
 class Events(object):
 
-    def __init__(self, eventId, eventName):
+    def __init__(self, eventId, eventName, buildingId, roomNum):
         self.eventId = eventId
         self.eventName = eventName
-        #self.date
-        #self.time
-        #self.organizer
-
+        self.eventBuilding = buildingId
+        self.roomNum = roomNum
+        self.date
+        self.time
+        self.organizer
+        self.attendees #array
+        self.maxOccupancy
 
     #create and cancel events
-    #def createEvent(self):
-        #todo
+    def createEvent(self, eventId):
+        #CHECK AVAILABILITY AND THEN BOOK ROOM
 
-    #def cancelEvent(self, event_id):
-        #todo
+    def viewEvent(selfs):
+        #CHECK IF EVENT EXISTS THEN DISPLAY
 
-    #rsvp to existing event
-    #def RSVP(self, event_id):
-        #todo
+    def cancelEvent(self, event_id):
+        #CHECK PERMISSIONS, CHECK IF EVENT EXISTS, DELETE EVENT
+
+    def RSVP(self, event_id, acct_id):
+        #CHECK IF EVENT EXISTS, CHECK OCCUPANCY, RSVP
 
 

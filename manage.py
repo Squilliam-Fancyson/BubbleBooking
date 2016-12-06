@@ -7,7 +7,7 @@ from flask_script.commands import ShowUrls, Clean
 from bubblebooking import create_app
 from bubblebooking.models import db, User
 
-from bubblebooking.views import *
+from bubblebooking import events
 
 # default to dev config because no one should use this in
 # production anyway

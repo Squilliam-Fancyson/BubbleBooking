@@ -2,9 +2,9 @@
 
 class University(object):
 
-    def __init(self, name, universityId, buildings):
-        self.name
-        self.universityId = universityId
+    def __init(self, univName, univId, buildings):
+        self.name = univName
+        self.universityId = univId
         self.buildings = buildings
 
 class Building(object):
@@ -14,21 +14,21 @@ class Building(object):
         self.buildingId = buildingId
         self.address = address #struct
         self.rooms = rooms     #array
-        self.buildingHours #array
+        self.buildingHours = buildingHours #array
 
 class Room(object):
-    def __init__(self, roomName, roomNum, roomType, roomfeatures):
-        #room attributes, room times not initialized???
+    def __init__(self, roomName, roomNum, roomType, roomFeatures, roomMaxOccupancy):
+
         self.roomName = roomName
         self.roomNum = roomNum
         self.roomType = roomType
+        self.roomMaxOccupancy = roomMaxOccupancy
         self.roomFeatures = roomFeatures  #array
-        self.roomTimes = []               #array, times not passed in?
-
+        self.roomTimes = []
 
     def book(self, date, time):
-        #todo
+        #CHECK ROOM TIME
 
     def unbook(self, date, time):
-        #todo
+        #CHECK IF EVENT EXISTS, CHECK PERMISSIONS, UNBOOK
 

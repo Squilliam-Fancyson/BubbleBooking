@@ -7,43 +7,42 @@ class Account(object):
         self.acctName = acct_name
         self.acctNum = acct_id
         self.password = acct_password
-
-        #regular account default permissions
-        #CONVERT PERMISSIONS TO STRUCT!!
-        perCreateEvent = True
-        perDeleteOwnEvent = True
-        perDeleteOtherEvent = False
-        perBanUser = False
-        perUnbanUser = False
-        perOverrideFaculty = False
-        perOverrideStudent = False
+        self.permissions = Permissions("regular")
 
 class Admin(Account):
     def __init(self):
-        #account name, account number, password
-
-        perDeleteOtherEvent = True
-        perBanUser = True
-        perUnbanUser = True
-        perOverrideFaculty = True
-        perOverrideStudent = True
+        self.permissions = Permissions("admin")
 
     #ban and unban users
     def banUser(self, acct_id):
-        #todo
+        self.permissions.permissions.isBanned = True
 
     def unbanUser(self, acct_id):
-        #todo
+        self.permissions.permissions.isBanned = False
 
-    def modifyPermissions(self, acct_id):
-        #todo
+    def modifyPermissions(self, accountId, permissionKey, permissionValue):
+        accountId.permissionKey = permissionValue
 
 class Faculty(Account):
 
     def __init(self):
-        #need to double check permissions
-        perOverrideStudent = True
-        perDeleteOtherEvent = True
+        self.permissions = Permissions("faculty")
 
     def overrideEvent(self, eventId):
         #todo
+
+class Permissions(self, accountType):
+    if accountType = faculty:
+        permissions = {'isBanned': False, 'createEvent': True, 'deleteOwnEvent': True, 'deleteOtherEvent': True, ' banUser': False,
+                       'unbanUser': False, 'overrideFaculty': False, 'overrideStudent': True}
+
+    else if accountType = admin:
+        permissions = {'isBanned': False, 'createEvent': True, 'deleteOwnEvent': True, 'deleteOtherEvent': True, ' banUser': True,
+                       'unbanUser': True, 'overrideFaculty': True, 'overrideStudent': True}
+
+    else:
+        permissions = {'isBanned': False, 'createEvent': True, 'deleteOwnEvent': True, 'deleteOtherEvent': False, ' banUser': False,
+                        'unbanUser': False, 'overrideFaculty': False, 'overrideStudent': False}
+
+    modifyPermissions(permissionKey, value):
+        permissionKey = value
