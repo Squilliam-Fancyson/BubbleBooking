@@ -1,47 +1,52 @@
 
 
-class Events(object):
-
+class Events():
     def __init__(self, eventName, eventRoom, organizer, attendees, date):
-
         self.eventName = eventName
         self.eventRoom = eventRoom
         self.eventOrganizer = organizer
         self.eventAttendees = attendees
         self.eventDate = date
 
-    def destroy(eventId):
+    def destroy(self, eventId):
         if self.organizer.hasPermissions(self.eventOrganizer.userName) == True:
-            #deleteEvent
+        #deleteEvent
 
-    def addUsertoAttendingList(userId):
-        #TODO
+    def addUsertoAttendingList(self, userId):
+        self.eventAttendees.append(userId)
 
-class Day(timeSlots):
-    self.dayTimeSlots = timeSlots
+class Day(Events):
 
-    def isAvailable(time):
+    def __init__(self, timeSlots):
+        self.dayTimeSlots = timeSlots
+
+    def isAvailable(self, timeSlots):
         #todo
 
-    def reserve(time):
+    def reserve(self, reserveTimeSlots):
         if self.organizer.hasPermissions(self.eventOrganizer.userName) == True:
-            #reserveEvent
+            for i in reserveTimeSlots:
+                for j in self.timeSlots:
+                    if reserveTimeSlots[i] == self.timesSlots[j]:
+                        return 0
+                    else:
+                        self.timeSlots[j] = reserveTimeSlots[i]
 
-class Invitation(object, state, invitee):
 
-        def __init__(self):
+class Invitation(Events):
+
+        def __init__(self, state, invitee):
             self.inviteState = state
             self.invitee = invitee
 
-        def acceptInvite(invitee):
-            removePendingStatus()
-            AddUserToAttendingList(invitee)
+        def acceptInvite(self, invitee):
+            self.Invitation.removePendingStatus()
+            self.AddUserToAttendingList(invitee)
 
+        def declineInvite(self, invitee):
+            self.Invitation.removePendingStatus()
 
-        def declineInvite():
-            #todo
-
-        def removePendingStatus():
-            #todo
+        def removePendingStatus(self, invitee):
+            invitee.removePendingStatus()
 
 

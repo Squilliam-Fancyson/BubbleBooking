@@ -1,6 +1,6 @@
 
 
-class Account(object):
+class Accounts(object):
 
     def __init__(self, credential, accountType, userName):
         #account name, account number, password
@@ -15,26 +15,26 @@ class Account(object):
         #todo
 
     # ban and unban users
-    def banUser(userName):
+    def banUser(self, userName):
         if self.permissions.hasPermissions(userName) == True:
                 userName.permissions.permissions.isBanned = True
 
-    def unbanUser(userName):
+    def unbanUser(self, userName):
         if self.permissions.hasPermissions(userName) == True:
             userName.permissions.permissions.isBanned = False
 
 
-class Regular(Account):
+class Regular(Accounts):
     def __init__(self, acct_id):
         self.permissions = Permissions("regular")
 
 
-class Admin(Account):
+class Admin(Accounts):
     def __init__(self):
         self.permissions = Permissions("admin")
 
 
-class Faculty(Account):
+class Faculty(Accounts):
 
     def __init__(self):
         self.permissions = Permissions("faculty")
@@ -42,22 +42,25 @@ class Faculty(Account):
     def overrideEvent(self, eventId):
         #todo
 
-class Permissions(self, accountType):
-    if accountType = faculty:
-        permissions = {'isBanned': False, 'createEvent': True, 'deleteOwnEvent': True, 'deleteOtherEvent': True, ' banUser': False,
-                       'unbanUser': False, 'overrideFaculty': False, 'overrideStudent': True}
+class Permissions(Accounts):
 
-    else if accountType = admin:
-        permissions = {'isBanned': False, 'createEvent': True, 'deleteOwnEvent': True, 'deleteOtherEvent': True, ' banUser': True,
-                       'unbanUser': True, 'overrideFaculty': True, 'overrideStudent': True}
+    def __init__(self):
+        if self.accountType == "faculty":
+            permissions = {'isBanned': False, 'createEvent': True, 'deleteOwnEvent': True, 'deleteOtherEvent': True, ' banUser': False,
+                           'unbanUser': False, 'overrideFaculty': False, 'overrideStudent': True}
 
-    else:
-        permissions = {'isBanned': False, 'createEvent': True, 'deleteOwnEvent': True, 'deleteOtherEvent': False, ' banUser': False,
-                        'unbanUser': False, 'overrideFaculty': False, 'overrideStudent': False}
+        if self.accountType == "admin":
+            permissions = {'isBanned': False, 'createEvent': True, 'deleteOwnEvent': True, 'deleteOtherEvent': True, ' banUser': True,
+                           'unbanUser': True, 'overrideFaculty': True, 'overrideStudent': True}
 
-    modifyPermissions(userName, permissionKey, value):
-        #todo
+        else:
+            permissions == {'isBanned': False, 'createEvent': True, 'deleteOwnEvent': True, 'deleteOtherEvent': False, ' banUser': False,
+                            'unbanUser': False, 'overrideFaculty': False, 'overrideStudent': False}
 
-    hasPermissions(userName)
+    def modifyPermissions(self, userName, permissionKey, value):
+            if self.permissions.hasPermissions(userName) == True:
+                userName.permissions.permissions.permissionKey = value
+
+    def hasPermissions(self, userName):
         #todo
 
